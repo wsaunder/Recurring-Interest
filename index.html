@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<style>
+    input {
+        width: 60px;
+        box-sizing: border-box;
+        border: 1px solid black;
+        border-radius 4px;
+        padding: 4px 12px;
+    }
+    form {
+        box-sizing: border-box;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 2px solid black;
+        border-radius 4px;
+        width: 40%;
+        background: lightgrey;
+        font-weight: 450;
+    }
+   
+    p {
+        font-weight: bold;
+    }
+    .floating-box {
+        display: inline-block;
+        width: 425px;
+        
+        margin: 8px;
+        border: 3px solid #73AD21;  
+    }
+    
+
+    
+    body {
+        font-weight: bold;
+    }
+
+</style>
+<body>
+
+
+    <form Name="main" class="floating-box">
+        Initial Deposit: <input id="initial" type="text"></input>
+        Recurring Deposit:<input id="recurring" type="text"></input>
+        Compounding: <input id="compounding"  type="text" value="12"></input>
+        Years:<input id="years" type="text"></input>
+        Rate:<input id="rate" type="text"></input>
+    </form>
+    <br></br>
+    <button type="button"  onclick="goCalc()">Calculate</button>
+    
+<h1></h1>
+    Total:<p id="total"></p>
+    Total Interest:<p id="totalInterest"></p>
+    
+
+
+    
+    <script>
+    
+
+       function goCalc()
+        {
+            var p, d, c, y, r, C2, C3, C4, C5, C6, total, totInt;
+            p = document.getElementById("initial").value;
+            d = document.getElementById("recurring").value;
+            c = document.getElementById("compounding").value;
+            y = document.getElementById("years").value;
+            r = document.getElementById("rate").value/100;
+            C2 = d;
+            C3 = c * y;
+            C4 = r / c;
+            C5 = p;
+            C6 = Math.pow(1+C4, C3);
+            total = C2*((C6-1)*(1+C4)/C4)+C5*C6;
+            totInt = total -C2*C3-C5;
+            document.getElementById("total").innerHTML = total.toFixed(2);
+            document.getElementById("totalInterest").innerHTML = totInt.toFixed(2);
+            
+        }
+
+
+    </script>
+</body>
+</html>
